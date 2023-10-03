@@ -18,8 +18,6 @@
             <property name="hibernate.hbm2ddl.auto">update</property>
 
 
-
-            <!-- ? Clases a mapear ? --> Aca pon las rutas de TODAS las clases a mapear (Que serán entidades)
             <mapping class="com.leomatias.CuentaAhorros"/>
             <mapping class="com.leomatias.GrupoDeAhorro"/>
             <mapping class="com.leomatias.Prestamo"/>
