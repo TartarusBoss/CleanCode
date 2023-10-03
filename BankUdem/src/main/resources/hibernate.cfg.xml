@@ -20,13 +20,12 @@
 
 
             <!-- ? Clases a mapear ? --> Aca pon las rutas de TODAS las clases a mapear (Que serán entidades)
-            <mapping class="org.davshaw.Model.pureentities.Usuario"/>
-            <mapping class="org.davshaw.Model.pureentities.Cuenta"/>
-            <mapping class="org.davshaw.Model.derivatedentities.RegistroGrupo"/>
-            <mapping class="org.davshaw.Model.pureentities.Grupo"/>
-            <mapping class="org.davshaw.Model.derivatedentities.PrestamoGrupo"/>
-            <mapping class="org.davshaw.Model.derivatedentities.RetiroCuenta"/>
-            <mapping class="org.davshaw.Model.derivatedentities.DepositoCuenta"/>
+            <mapping class="com.leomatias.CuentaAhorros"/>
+            <mapping class="com.leomatias.GrupoDeAhorro"/>
+            <mapping class="com.leomatias.Prestamo"/>
+            <mapping class="com.leomatias.Transaccion"/>
+            <mapping class="com.leomatias.UdemBank"/>
+            <mapping class="com.leomatias.Usuario"/>
 
         </session-factory>
 </hibernate-configuration>
