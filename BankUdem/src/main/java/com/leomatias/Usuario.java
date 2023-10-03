@@ -11,6 +11,7 @@ public class Usuario {
     private CuentaAhorros cuentaAhorros;
     private double comision;
     private boolean sesionIniciada;
+    public List<GrupoDeAhorro> gruposAhorroMiembro;
 
     // Constructor de la clase Usuario.
     public Usuario(String nombreUsuario, String contraseña, Double saldoInicial) {
@@ -21,6 +22,7 @@ public class Usuario {
         this.cuentaAhorros = new CuentaAhorros(saldoInicial);
         this.comision = 0.001;
         this.sesionIniciada = false;
+        this.gruposAhorroMiembro = new ArrayList<>();
     }
 
     // Método para iniciar sesión de un usuario.
@@ -37,6 +39,12 @@ public class Usuario {
         sesionIniciada = false;
     }
 
+    public void unirseGrupoDeAhorro(GrupoDeAhorro grupo){
+        if (gruposAhorroMiembro.size() < 3){
+            gruposAhorroMiembro.add(grupo);
+        }
+    }
+
     // Método para crear un grupo de ahorro y agregarlo a la lista de grupos si se cumplen ciertas condiciones.
     public void crearGrupoAhorro(GrupoDeAhorro nuevoGrupo) {
         if (gruposAhorro.size() < 3) {
@@ -45,19 +53,21 @@ public class Usuario {
     }
 
     // Método para solicitar un préstamo si se cumplen ciertas condiciones.
-    public void solicitarPrestamo(double monto, int plazo) {
+    public void solicitarPrestamo(double monto, int plazo, GrupoDeAhorro grupoDelQuePidePrestamo) {
         if (sesionIniciada) {
+            // Obtiene la tasa de interés del grupo
+            double tasaInteres = grupoDelQuePidePrestamo.getTasaInteres();
+
             // Lógica de solicitud de préstamo
-            Prestamo prestamo = new Prestamo(monto, plazo);
-            double tasaInteres = 0.03; // Tasa de interés del 3% mensual
-            double interesMensual = tasaInteres * monto;
-            double cuotaMensual = (monto + interesMensual) / plazo;
-    
+            Prestamo prestamo = new Prestamo(monto, plazo, tasaInteres);
+            double interesMensual = prestamo.getTasaInteres() * monto;
+            double cuotaMensual = monto / plazo + interesMensual;
+
             if (plazo >= 2 && cuentaAhorros.getSaldo() >= monto) {
                 cuentaAhorros.actualizarSaldo(-monto);
                 historialTransacciones.add(new Transaccion(Transaccion.TipoTransaccion.PRESTAMO, monto, cuentaAhorros.getSaldo()));
                 System.out.println("Préstamo solicitado con éxito.");
-                System.out.println("Cuota mensual (incluyendo 3% de interés mensual): " + cuotaMensual);
+                System.out.println("Cuota mensual: " + cuotaMensual);
             } else {
                 System.out.println("No cumples con los requisitos para solicitar un préstamo.");
             }
@@ -65,6 +75,7 @@ public class Usuario {
             System.out.println("Debes iniciar sesión para solicitar un préstamo.");
         }
     }
+
     // Método para realizar una transacción y actualizar el historial y saldo de la cuenta.
     public void realizarTransaccion(Transaccion transaccion) {
         historialTransacciones.add(transaccion);
@@ -119,4 +130,21 @@ public class Usuario {
     public CuentaAhorros getCuentaAhorros() {
         return cuentaAhorros;
     }
+
+    // Método para realizar un pago mensual de un préstamo
+    public void realizarPagoMensual(double cuotaMensual) {
+        if (sesionIniciada) {
+            if (cuotaMensual > 0 && cuotaMensual <= cuentaAhorros.getSaldo()) {
+                cuentaAhorros.actualizarSaldo(-cuotaMensual);
+                // Actualizar el estado del préstamo (por ejemplo, reducir la deuda)
+                // Aquí debes implementar la lógica para actualizar el estado del préstamo pendiente
+                System.out.println("Pago mensual realizado con éxito.");
+            } else {
+                System.out.println("El monto ingresado no es válido.");
+            }
+        } else {
+            System.out.println("Debes iniciar sesión para realizar un pago mensual.");
+        }
+    }
+
 }

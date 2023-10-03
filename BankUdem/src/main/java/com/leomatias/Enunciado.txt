@@ -15,8 +15,8 @@ cumpla con las siguientes condiciones:
 ○ El plazo de pago no es inferior a dos meses ✓ 
 ○ El interés será de 3% mensual ✓
 ● El usuario podrá solicitar un préstamo de otro grupo de ahorro siempre y cuando otro
-usuario de uno de sus grupos de ahorro esté en ese grupo de ahorro
-○ Si pide prestado de este grupo, el interés será del 5% mensual
+usuario de uno de sus grupos de ahorro esté en ese grupo de ahorro ✓
+○ Si pide prestado de este grupo, el interés será del 5% mensual ✓
 ● El usuario pagará por mensualidades. Cuando decida pagar, el sistema le deberá
 mostrar cuánto debe pagar según su deuda y el número de meses a pagar
 ● Los usuarios de un grupo de ahorro podrán disolver un grupo de ahorro. Cuando lo
@@ -34,4 +34,4 @@ En este proceso, se evalúa cuál equipo de ahorro ha obtenido más ganancias ha
 la fecha y se le inyecta el 10% de su saldo actual.
 ● El equipo de fidelización del banco puede identificar a los usuarios de cada grupo de
 ahorro que más aportan al grupo. A estos usuarios, el banco los premia con un 1%
-menos de comisión a la hora de hacer préstamos.
+menos de comisión a la hora de hacer préstamos. 

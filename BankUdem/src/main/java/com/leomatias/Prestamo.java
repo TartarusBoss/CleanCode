@@ -3,15 +3,14 @@ public class Prestamo {
     // Propiedades de un préstamo.
     private double monto;
     private int plazo;
-    private double tasaInteres;
     private boolean pagado;
+    private double tasaInteres;
 
     // Constructor de la clase Prestamo.
-    public Prestamo(double monto, int plazo) {
+    public Prestamo(double monto, int plazo, double tasaInteres) {
         this.monto = monto;
         this.plazo = plazo;
-        this.tasaInteres = 0.03;
-        this.pagado = false;
+        this.pagado = false;    
     }
 
     // Métodos para obtener y establecer propiedades del préstamo (getters y setters).

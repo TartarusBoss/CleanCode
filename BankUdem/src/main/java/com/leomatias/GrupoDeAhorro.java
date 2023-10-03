@@ -7,12 +7,14 @@ public class GrupoDeAhorro {
     private String nombreGrupo;
     private double saldoGrupo;
     private List<Usuario> miembros;
+    private double tasaInteres;
 
     // Constructor de la clase GrupoDeAhorro.
-    public GrupoDeAhorro(String nombreGrupo, double saldoInicial) {
+    public GrupoDeAhorro(String nombreGrupo, double saldoInicial, double tasaInteres) {
         this.nombreGrupo = nombreGrupo;
         this.saldoGrupo = saldoInicial;
         this.miembros = new ArrayList<>();
+        this.tasaInteres = tasaInteres;
     }
 
     // Métodos getter y setter para las propiedades de un grupo de ahorro.
@@ -22,6 +24,9 @@ public class GrupoDeAhorro {
 
     public void setNombreGrupo(String nombreGrupo) {
         this.nombreGrupo = nombreGrupo;
+    }
+    public double getTasaInteres(){
+        return tasaInteres;
     }
 
     public double getSaldoGrupo() {
@@ -42,6 +47,9 @@ public class GrupoDeAhorro {
         if (miembros.size() < 3) {
             miembros.add(usuario);
         }
+    }
+    public boolean perteneceUsuario(Usuario usuario) {
+        return miembros.contains(usuario);
     }
 
     // Método para encontrar a los mejores aportadores del grupo.
