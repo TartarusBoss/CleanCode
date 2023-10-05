@@ -1,4 +1,4 @@
-import java.time.LocalDateTime;
+    import java.time.LocalDateTime;
 
 // La clase Transaccion representa una transacción bancaria.
 public class Transaccion {
@@ -51,3 +51,4 @@ public class Transaccion {
         // Aquí se puede implementar la lógica para calcular el saldo final después de la transacción.
     }
 }
+    
