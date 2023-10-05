@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+    import java.util.ArrayList;
 import java.util.List;
 
 // La clase Usuario representa a los usuarios del banco.
@@ -98,6 +98,29 @@ public class Usuario {
         }
     }
 
+    public void realizarPagoMensual(Prestamo prestamo, int mesesAPagar) {
+        if (sesionIniciada) {
+            if (prestamo != null && !prestamo.estaPagado()) {
+                double cuotaMensual = prestamo.calcularCuotaMensual();
+                double montoAPagar = cuotaMensual * mesesAPagar;
+                
+                if (montoAPagar <= cuentaAhorros.getSaldo()) {
+                    cuentaAhorros.actualizarSaldo(-montoAPagar);
+                    prestamo.pagarCuotaMensual(); // Actualiza el estado del préstamo
+                    System.out.println("Pago mensual realizado con éxito.");
+                    System.out.println("Monto pagado: " + montoAPagar);
+                    System.out.println("Cuotas pendientes: " + prestamo.getPlazo());
+                } else {
+                    System.out.println("Saldo insuficiente para realizar el pago.");
+                }
+            } else {
+                System.out.println("El préstamo no existe o ya ha sido pagado.");
+            }
+        } else {
+            System.out.println("Debes iniciar sesión para realizar un pago mensual.");
+        }
+    }
+
     // Métodos getter y setter para las propiedades de un usuario.
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -146,5 +169,5 @@ public class Usuario {
             System.out.println("Debes iniciar sesión para realizar un pago mensual.");
         }
     }
-
 }
+    
